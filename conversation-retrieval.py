@@ -57,3 +57,4 @@ response = chain.invoke({
 
 # print("context ",response["context"])
 print(response["answer"])
+bk

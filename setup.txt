@@ -1,0 +1,7 @@
+python -m venv venv
+.\venv\Scripts\activate
+
+pip install BeautifulSoup4
+pip install langchain langchain-google-genai
+pip install python-dotenv
+pip install faiss-cpu

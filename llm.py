@@ -9,10 +9,6 @@ load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# llm = ChatOpenAI(
-#     model="gpt-3.5-turbo"
-# )
-
 llm = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=GOOGLE_API_KEY,temperature=0.3)
 
 # tweet_prompt = ChatPromptTemplate.from_template("You are a content creator. Write me a tweet about {topic}.")

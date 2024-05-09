@@ -3,5 +3,6 @@ python -m venv venv
 
 pip install BeautifulSoup4
 pip install langchain langchain-google-genai
+pip install langchain-openai
 pip install python-dotenv
 pip install faiss-cpu

@@ -1,3 +1,4 @@
+import os
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -7,13 +8,13 @@ from langchain_community.chat_message_histories.upstash_redis import UpstashRedi
 from dotenv import load_dotenv
 load_dotenv()
 
-UPSTASH_URL = "https://apn1-light-sheepdog-34699.upstash.io"
-UPSTASH_TOKEN = "AYeLASQgOGJlZWZjM2YtMTM1ZS00MDNhLWFkYmItM2NhNzE2OGNiNDA4MTg5NGU1MjVlNzI3NDM3ZDlmYTU0OTEzNDdkMjcxYzY="
+# UPSTASH_URL = "https://apn1-light-sheepdog-34699.upstash.io"
+# UPSTASH_TOKEN = "AYeLASQgOGJlZWZjM2YtMTM1ZS00MDNhLWFkYmItM2NhNzE2OGNiNDA4MTg5NGU1MjVlNzI3NDM3ZDlmYTU0OTEzNDdkMjcxYzY="
 
 
 history = UpstashRedisChatMessageHistory(
-    url=UPSTASH_URL,
-    token=UPSTASH_TOKEN,
+    url=os.environ['UPSTASH_URL'],
+    token=os.environ['UPSTASH_TOKEN'],
     session_id="chat1"
 )
 
@@ -42,17 +43,13 @@ chain = LLMChain(
     verbose=True
 )
 
-
-# msg1 = {
-#     "input": "what's the most bueatyful sea of Thailand?"
-# }
-
-# response1 = chain.invoke(msg1)
-# print(response1)
-
-msg2 = {
-    "input": "is there hot?"
-}
-
-response2 = chain.invoke(msg2)
-print(response2)
+if __name__ == "__main__":
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'exit':
+            break
+        msg = {
+            "input": user_input
+        }
+        response = chain.invoke(msg)
+        print("AI: "+response["text"])

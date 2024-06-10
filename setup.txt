@@ -1,3 +1,6 @@
+install python 3.12.3
+ctrl+shif+p    select interpretor  python 3.12.3
+
 python -m venv venv
 .\venv\Scripts\activate
 
